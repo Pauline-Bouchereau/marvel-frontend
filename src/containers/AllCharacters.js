@@ -21,7 +21,7 @@ const AllCharacters = ({ serverUrl, favoriteList, setFavoriteList }) => {
     <Loading />
   ) : (
     <main className="container characters-list">
-      <h1>Les personnages de l'Univers Marvel</h1>
+      <h1>LES PERSONNAGES MARVEL</h1>
       <div>
         {data.results.map((character) => {
           return (

@@ -1,5 +1,9 @@
 const Home = () => {
-  return <main>This is the home page</main>;
+  return (
+    <main className="homepage container">
+      <h1>BIENVENUE DANS L'UNIVERS MARVEL !</h1>
+    </main>
+  );
 };
 
 export default Home;

@@ -18,9 +18,8 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 library.add(faHeart);
 
 function App() {
-  const [favoriteList, setFavoriteList] = useState([
-    { characterId: "test", comicId: null },
-  ]);
+  const [favoriteListCharacter, setFavoriteListCharacter] = useState([]);
+  const [favoriteListComics, setFavoriteListComics] = useState([]);
 
   // To go from dev mode to live mode --> change value of serverUrl :
   // Local server : "http://localhost:3001"
@@ -34,25 +33,30 @@ function App() {
         <Route path="/characters">
           <AllCharacters
             serverUrl={serverUrl}
-            favoriteList={favoriteList}
-            setFavoriteList={setFavoriteList}
+            favoriteListCharacter={favoriteListCharacter}
+            setFavoriteListCharacter={setFavoriteListCharacter}
           />
         </Route>
         <Route path="/comics">
           <AllComics
             serverUrl={serverUrl}
-            favoriteList={favoriteList}
-            setFavoriteList={setFavoriteList}
+            favoriteListComics={favoriteListComics}
+            setFavoriteListComics={setFavoriteListComics}
           />
         </Route>
         <Route path="/favorites">
-          <Favorites favoriteList={favoriteList} />
+          <Favorites
+            favoriteListCharacter={favoriteListCharacter}
+            setFavoriteListCharacter={setFavoriteListCharacter}
+            favoriteListComics={favoriteListComics}
+            setFavoriteListComics={setFavoriteListComics}
+          />
         </Route>
         <Route path="/character/:id">
           <Character
             serverUrl={serverUrl}
-            favoriteList={favoriteList}
-            setFavoriteList={setFavoriteList}
+            favoriteListCharacter={favoriteListCharacter}
+            setFavoriteListCharacter={setFavoriteListCharacter}
           />
         </Route>
         <Route exact path="/">

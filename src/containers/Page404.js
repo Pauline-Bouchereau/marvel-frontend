@@ -9,8 +9,8 @@ const Page404 = () => {
           frameborder="0"
           scrolling="no"
           allowfullscreen
-          width="500"
-          height="526"
+          // width="500"
+          // height="455"
           title="Lost"
         ></iframe>
         <p>
@@ -20,9 +20,9 @@ const Page404 = () => {
         </p>
       </div>
       <div>
-        <h1>Erreur 404 !</h1>
-        <p>Désolé, la page que vous cherchez n'existe pas !</p>
-        <p>Profitez-en pour en savoir plus sur mon parcours : </p>
+        <h1>ERREUR 404 !</h1>
+        <p>Désolé, la page que tu cherches n'existe pas !</p>
+        <p>Profite-en pour en savoir plus sur mon parcours : </p>
         <a href="https://www.linkedin.com/in/pbouchereau/" target="blank">
           <img
             src="https://res.cloudinary.com/pauline-cloudinary/image/upload/v1620920650/usefull/logo-linkedin_vo1qf3.png"
@@ -36,15 +36,15 @@ const Page404 = () => {
             alt="Logo Github"
           />
         </a>
-        <p>
-          Mais si vous voulez plus de Marvel, c'est par ici que ça se passe !
-        </p>
-        <Link to="/characters">
-          <button>Personnages</button>
-        </Link>
-        <Link to="/comics">
-          <button>Comics</button>
-        </Link>
+        <p>Pour plus de Marvel, c'est par ici que ça se passe !</p>
+        <div>
+          <Link to="/characters">
+            <button>Personnages</button>
+          </Link>
+          <Link to="/comics">
+            <button>Comics</button>
+          </Link>
+        </div>
       </div>
     </main>
   );
