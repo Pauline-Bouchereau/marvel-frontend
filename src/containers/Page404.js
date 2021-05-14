@@ -36,7 +36,7 @@ const Page404 = () => {
             alt="Logo Github"
           />
         </a>
-        <p>Pour plus de Marvel, c'est par ici que ça se passe !</p>
+        <p>⬇️ Pour plus de Marvel, c'est par ici que ça se passe ⬇️</p>
         <div>
           <Link to="/characters">
             <button>Personnages</button>

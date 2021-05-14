@@ -14,8 +14,8 @@ import Page404 from "./containers/Page404";
 
 // Icons with FontAwesome
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-library.add(faHeart);
+import { faHeart, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+library.add(faHeart, faUserCircle);
 
 function App() {
   const [favoriteListCharacter, setFavoriteListCharacter] = useState([]);

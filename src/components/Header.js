@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import logoMarvel from "../assets/img/marvel-logo.png";
 
@@ -20,6 +21,9 @@ const Header = () => {
             <button>Favoris</button>
           </Link>
         </nav>
+        <Link>
+          <FontAwesomeIcon icon="user-circle" />
+        </Link>
       </div>
     </header>
   );
