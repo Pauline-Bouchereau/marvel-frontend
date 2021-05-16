@@ -1,20 +1,50 @@
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const CharacterCard = ({ characterInfo, favoriteList, setFavoriteList }) => {
+const CharacterCard = ({
+  characterInfo,
+  serverUrl,
+  userId,
+  userToken,
+  favCharDB,
+  setFavCharDB,
+}) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const history = useHistory();
 
-  const handleClickIcon = () => {
-    const newFavoriteList = [...favoriteList];
-    if (!isFavorite) {
-      newFavoriteList.push({ characterId: characterInfo._id, comicId: null });
+  // Check if character is already in Fav list
+  const index = favCharDB.indexOf(characterInfo._id);
+  // if yes, set isFavorite to true so the heart icon will be red
+  useEffect(() => {
+    if (index !== -1) {
+      setIsFavorite(true);
     }
-    setFavoriteList(newFavoriteList);
-    console.log(newFavoriteList);
-    setIsFavorite(!isFavorite);
+  }, [index]);
+
+  const handleClickIcon = async () => {
+    const newFavCharDB = [...favCharDB];
+
+    if (index === -1) {
+      setIsFavorite(true);
+      newFavCharDB.push(characterInfo._id);
+    } else {
+      setIsFavorite(false);
+      newFavCharDB.splice(index, 1);
+    }
+    setFavCharDB(newFavCharDB);
+    console.log(newFavCharDB);
+    const favListStr = newFavCharDB.join("**");
+
+    await axios.put(
+      `${serverUrl}/user/favoritecharacterlist/update/${userId}`,
+      {
+        favoriteListCharacters: favListStr,
+      },
+      { headers: { authorization: `Bearer ${userToken}` } }
+    );
   };
 
   const handleClickCard = () => {
@@ -23,7 +53,6 @@ const CharacterCard = ({ characterInfo, favoriteList, setFavoriteList }) => {
 
   return (
     <div className="character-card">
-      <h3 onClick={handleClickCard}>{characterInfo.name}</h3>
       <div>
         <img
           src={`${characterInfo.thumbnail.path}.${characterInfo.thumbnail.extension}`}
@@ -36,6 +65,7 @@ const CharacterCard = ({ characterInfo, favoriteList, setFavoriteList }) => {
         >
           <FontAwesomeIcon icon="heart" />
         </div>
+        <h3 onClick={handleClickCard}>{characterInfo.name}</h3>
       </div>
       <p onClick={handleClickCard}>{characterInfo.description}</p>
     </div>

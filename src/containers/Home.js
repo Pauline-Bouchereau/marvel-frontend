@@ -15,7 +15,7 @@ const Home = () => {
           </Link>
           <p>
             Tu veux en savoir plus sur les personnages de ton univers préféré,
-            c'est par ici, clicke sur la vignette d'un personnage pour savoir
+            c'est par ici, clique sur la vignette d'un personnage pour savoir
             dans quels comics tu peux le retrouver !
           </p>
         </div>
@@ -32,13 +32,11 @@ const Home = () => {
             <button>Favoris</button>
           </Link>
           <p>
-            Clicke sur le{" "}
+            Crée un compte et clique sur le{" "}
             <span>
               <FontAwesomeIcon icon="heart" />
             </span>{" "}
-            pour mettre un personnage ou un comic en Favoris, ils y seront
-            conservés 1 semaine. Tu veux les garder pour la vie ? Crée un compte
-            !{" "}
+            pour mettre un personnage ou un comic en Favoris !{" "}
           </p>
         </div>
       </div>

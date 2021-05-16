@@ -29,12 +29,17 @@ p {
   color: white;
 }
 
-button {
+button,
+input[type="submit"] {
   text-transform: uppercase;
   background-color: var(--marvel-red);
   border: none;
   color: white;
   cursor: pointer;
+}
+
+.disabled {
+  opacity: 0.8;
 }
 
 /* Titles */
@@ -44,12 +49,11 @@ h3,
 h4 {
   font-weight: 700;
   color: white;
+  text-align: center;
 }
 
 h1 {
   font-size: 40px;
-  text-align: center;
-
   text-transform: uppercase;
 }
 
@@ -66,6 +70,7 @@ h3 {
 h4 {
   font-size: 16px;
   text-align: center;
+  margin-bottom: 5px;
 }
 
 /* ------------------- */
@@ -89,8 +94,20 @@ header img {
 
 header button {
   height: 40px;
-  width: 100px;
+  width: 120px;
   margin-right: 15px;
+}
+
+.login {
+  width: 220px;
+}
+
+header .icon {
+  margin-right: 5px;
+}
+
+.login .icon {
+  font-size: 20px;
 }
 
 /* ------------------- */
@@ -152,19 +169,70 @@ header button {
 }
 
 /* All Character Page & All Comic Page */
-.character-list > div {
+.characters-list,
+.comics-list {
+  margin-top: 30px;
+}
+
+.characters-list > div > button,
+.comics-list > div > button {
+  height: 30px;
+  margin-bottom: 15px;
+}
+
+.search {
+  margin: 20px auto;
+  width: calc(100% / 2.5);
+}
+
+.search input[type="text"] {
+  width: calc(70% - 15px);
+  height: 30px;
+  margin-right: 15px;
+  padding: 5px;
+}
+
+.search input[type="submit"] {
+  width: 30%;
+  height: 30px;
+}
+
+.characters-list > div > button:first-child,
+.comics-list > div > button:first-child {
+  margin-right: 15px;
+}
+
+.characters-list > div,
+.comics-list > div {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .character-card,
 .comic-card {
-  width: 250px;
-  height: 400px;
-  overflow: hidden;
-  margin-bottom: 20px;
-  padding: 10px;
+  width: calc(100% / 5 - 40px);
+  height: 350px;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  margin-bottom: 10px;
   background-color: var(--marvel-red);
+}
+
+.character-card {
+  cursor: pointer;
+}
+
+.character-card::-webkit-scrollbar,
+.comic-card::-webkit-scrollbar {
+  display: none;
+}
+
+.character-card:not(:nth-child(5n)),
+.comic-card:not(:nth-child(5n)) {
+  margin-right: 10px;
 }
 
 .character-card > div,
@@ -175,14 +243,24 @@ header button {
 .character-card img,
 .comic-card img {
   width: 100%;
+  height: 200px;
+  object-position: left;
+}
+
+.character-card p,
+.comic-card p {
+  font-size: 14px;
+  text-align: justify;
+  width: 100%;
+  padding: 0 5px;
 }
 
 /* Favorties */
 .favorite,
 .not-favorite {
   border-radius: 50%;
-  height: 24px;
-  width: 24px;
+  height: 30px;
+  width: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -245,6 +323,63 @@ header button {
   width: 100%;
   height: 215px;
   object-position: left;
+}
+
+/* Login Signup */
+.login-signup {
+  height: calc(100vh - 180px);
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-signup > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin: 30px 0;
+}
+
+.login-signup > div:first-child {
+  border-right: 1px solid var(--marvel-red);
+}
+
+.login-signup h2 {
+  margin-bottom: 15px;
+}
+
+.login-signup p {
+  margin-bottom: 20px;
+}
+
+.login-signup form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.login-signup form input {
+  width: 55%;
+  height: 30px;
+  padding: 5px 10px;
+}
+
+.login-signup form input:not([type="submit"]) {
+  color: var(--marvel-red);
+}
+
+.login-signup form input:focus {
+  outline: solid 1px var(--marvel-red);
+}
+
+.login-signup form input:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: var(--marvel-red);
+  font-size: 16px;
 }
 
 /* Page 404 */

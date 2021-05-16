@@ -3,7 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import logoMarvel from "../assets/img/marvel-logo.png";
 
-const Header = () => {
+const Header = ({ userToken, setUser }) => {
+  const handleClickLogout = () => {
+    setUser(null);
+  };
   return (
     <header>
       <div className="container">
@@ -12,18 +15,35 @@ const Header = () => {
         </Link>
         <nav>
           <Link to="/characters">
-            <button>Personnages</button>
+            <button>
+              {" "}
+              <FontAwesomeIcon icon="mask" className="icon" />
+              Personnages
+            </button>
           </Link>
           <Link to="/comics">
-            <button>Comics</button>
+            <button>
+              {" "}
+              <FontAwesomeIcon icon="book-open" className="icon" />
+              Comics
+            </button>
           </Link>
           <Link to="/favorites">
-            <button>Favoris</button>
+            <button>
+              <FontAwesomeIcon icon="heart" className="icon" /> Favoris
+            </button>
           </Link>
         </nav>
-        <Link>
-          <FontAwesomeIcon icon="user-circle" />
-        </Link>
+        {!userToken ? (
+          <Link to="/login-signup">
+            <button className="login">
+              <FontAwesomeIcon icon="user-circle" className="icon" /> S'inscrire
+              | Se connecter
+            </button>
+          </Link>
+        ) : (
+          <button onClick={handleClickLogout}>Se déconnecter</button>
+        )}
       </div>
     </header>
   );
