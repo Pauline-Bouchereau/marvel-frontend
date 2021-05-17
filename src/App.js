@@ -33,8 +33,8 @@ function App() {
 
   // To go from dev mode to live mode --> change value of serverUrl :
   // Local server : "http://localhost:3001"
-  // Heroku server : "https://marvel-backend-pb.herokuapp.com/"
-  const serverUrl = "https://marvel-backend-pb.herokuapp.com/";
+  // Heroku server : "https://marvel-backend-pb.herokuapp.com"
+  const serverUrl = "https://marvel-backend-pb.herokuapp.com";
 
   // Set token in Cookies
   const setUser = (token, id) => {
