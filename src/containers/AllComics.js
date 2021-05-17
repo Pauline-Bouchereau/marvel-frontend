@@ -23,11 +23,14 @@ const AllComics = ({ serverUrl, userToken, userId, search, setSearch }) => {
       }
       setData(response.data);
 
-      const responseFav = await axios.get(
-        `${serverUrl}/user/favoritelists/${userId}`,
-        { headers: { authorization: `Bearer ${userToken}` } }
-      );
-      setFavComicsDB(responseFav.data.favoriteListComics);
+      if (userToken) {
+        const responseFav = await axios.get(
+          `${serverUrl}/user/favoritelists/${userId}`,
+          { headers: { authorization: `Bearer ${userToken}` } }
+        );
+        setFavComicsDB(responseFav.data.favoriteListComics);
+      }
+
       setIsLoading(false);
     };
     fetchData();

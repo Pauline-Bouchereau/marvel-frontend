@@ -11,9 +11,14 @@ const ComicCard = ({
   setFavComicsDB,
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  // Check if comic is already in Fav list
-  const index = favComicsDB.indexOf(comicInfo._id);
+  let index;
+  if (favComicsDB.length > 0) {
+    // Check if comic is already in Fav list
+    index = favComicsDB.indexOf(comicInfo._id);
+  }
+
   // if yes, set isFavorite to true so the heart icon will be red
   useEffect(() => {
     if (index !== -1) {
@@ -22,30 +27,35 @@ const ComicCard = ({
   }, [index]);
 
   const handleClickIcon = async () => {
-    const newFavComicsDB = [...favComicsDB];
+    if (userToken) {
+      const newFavComicsDB = [...favComicsDB];
 
-    if (index === -1) {
-      setIsFavorite(true);
-      newFavComicsDB.push(comicInfo._id);
+      if (index === -1) {
+        setIsFavorite(true);
+        newFavComicsDB.push(comicInfo._id);
+      } else {
+        setIsFavorite(false);
+        newFavComicsDB.splice(index, 1);
+      }
+      setFavComicsDB(newFavComicsDB);
+
+      const favListStr = newFavComicsDB.join("**");
+
+      await axios.put(
+        `${serverUrl}/user/favoritecomiclist/update/${userId}`,
+        {
+          favoriteListComics: favListStr,
+        },
+        { headers: { authorization: `Bearer ${userToken}` } }
+      );
     } else {
-      setIsFavorite(false);
-      newFavComicsDB.splice(index, 1);
+      setErrorMessage("Pour ajouter un comic en favoris, crée-toi un compte !");
     }
-    setFavComicsDB(newFavComicsDB);
-
-    const favListStr = newFavComicsDB.join("**");
-
-    await axios.put(
-      `${serverUrl}/user/favoritecomiclist/update/${userId}`,
-      {
-        favoriteListComics: favListStr,
-      },
-      { headers: { authorization: `Bearer ${userToken}` } }
-    );
   };
 
   return (
     <div className="comic-card">
+      {errorMessage && <p>{errorMessage}</p>}
       <div>
         <img
           src={`${comicInfo.thumbnail.path}.${comicInfo.thumbnail.extension}`}

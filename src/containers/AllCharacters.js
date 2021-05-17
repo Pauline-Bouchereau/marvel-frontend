@@ -16,14 +16,16 @@ const AllCharacters = ({ serverUrl, userId, userToken }) => {
       const response = await axios.get(`${serverUrl}/characters/?skip=${skip}`);
       setData(response.data);
 
-      const responseFav = await axios.get(
-        `${serverUrl}/user/favoritelists/${userId}`,
-        { headers: { authorization: `Bearer ${userToken}` } }
-      );
-      setFavCharDB(responseFav.data.favoriteListCharacter);
-
+      if (userToken) {
+        const responseFav = await axios.get(
+          `${serverUrl}/user/favoritelists/${userId}`,
+          { headers: { authorization: `Bearer ${userToken}` } }
+        );
+        setFavCharDB(responseFav.data.favoriteListCharacter);
+      }
       setIsLoading(false);
     };
+
     fetchData();
   }, [serverUrl, skip, userId, userToken]);
 

@@ -12,11 +12,16 @@ const CharacterCard = ({
   setFavCharDB,
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const history = useHistory();
 
-  // Check if character is already in Fav list
-  const index = favCharDB.indexOf(characterInfo._id);
+  let index;
+  if (favCharDB.length > 0) {
+    // Check if character is already in Fav list
+    index = favCharDB.indexOf(characterInfo._id);
+  }
+
   // if yes, set isFavorite to true so the heart icon will be red
   useEffect(() => {
     if (index !== -1) {
@@ -25,26 +30,32 @@ const CharacterCard = ({
   }, [index]);
 
   const handleClickIcon = async () => {
-    const newFavCharDB = [...favCharDB];
+    if (favCharDB.length > 0) {
+      const newFavCharDB = [...favCharDB];
 
-    if (index === -1) {
-      setIsFavorite(true);
-      newFavCharDB.push(characterInfo._id);
+      if (index === -1) {
+        setIsFavorite(true);
+        newFavCharDB.push(characterInfo._id);
+      } else {
+        setIsFavorite(false);
+        newFavCharDB.splice(index, 1);
+      }
+      setFavCharDB(newFavCharDB);
+      console.log(newFavCharDB);
+      const favListStr = newFavCharDB.join("**");
+
+      await axios.put(
+        `${serverUrl}/user/favoritecharacterlist/update/${userId}`,
+        {
+          favoriteListCharacters: favListStr,
+        },
+        { headers: { authorization: `Bearer ${userToken}` } }
+      );
     } else {
-      setIsFavorite(false);
-      newFavCharDB.splice(index, 1);
+      setErrorMessage(
+        "Pour ajouter un personnage en favoris, crée-toi un compte !"
+      );
     }
-    setFavCharDB(newFavCharDB);
-    console.log(newFavCharDB);
-    const favListStr = newFavCharDB.join("**");
-
-    await axios.put(
-      `${serverUrl}/user/favoritecharacterlist/update/${userId}`,
-      {
-        favoriteListCharacters: favListStr,
-      },
-      { headers: { authorization: `Bearer ${userToken}` } }
-    );
   };
 
   const handleClickCard = () => {
@@ -53,6 +64,7 @@ const CharacterCard = ({
 
   return (
     <div className="character-card">
+      {errorMessage && <p>{errorMessage}</p>}
       <div>
         <img
           src={`${characterInfo.thumbnail.path}.${characterInfo.thumbnail.extension}`}
