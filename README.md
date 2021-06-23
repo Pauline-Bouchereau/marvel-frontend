@@ -7,7 +7,7 @@
 👉 Netlify Link to see the live version [HERE](https://marvel-pb.netlify.app/)  
 👉 Repo for the Backend of this project [HERE](https://github.com/Pauline-Bouchereau/marvel-backend)
 
-![Homepage of the website](./asset/homepage.png)
+![Homepage of the website](./src/assets/img/homepage.png)
 
 _Made in 2021 @ Le Reacteur_
 
@@ -24,14 +24,14 @@ Login/Sign Up || Add a comic or character to favorites || Visualize favourites s
 
 ### 🪛 Packages
 
-✔️ Axios   
+✔️ Axios  
 ✔️ Cloudinary  
 ✔️ React Router Dom  
 ✔️ Js-Cookies  
 ✔️ "@fortawesome/fontawesome-svg-core": "^1.2.35"  
 ✔️ "@fortawesome/free-regular-svg-icons": "^5.15.3"  
 ✔️ "@fortawesome/free-solid-svg-icons": "^5.15.3"  
-✔️ "@fortawesome/react-fontawesome": "^0.1.14".  
+✔️ "@fortawesome/react-fontawesome": "^0.1.14".
 
 ### 🚀 Running the project
 
@@ -45,7 +45,7 @@ cd marvel-frontend
 #### Install packages :
 
 ```javascript
-yarn
+yarn;
 ```
 
 #### When installation is complete :

@@ -31,7 +31,7 @@ function App() {
   const [userId, setUserId] = useState(Cookies.get("userId") || null);
   const [search, setSearch] = useState("");
 
-  // To go from dev mode to live mode --> change value of serverUrl :
+  // To go from dev mode to live mode --> change the serverUrl :
   // Local server : "http://localhost:3001"
   // Heroku server : "https://marvel-backend-pb.herokuapp.com"
   const serverUrl = "https://marvel-backend-pb.herokuapp.com";
